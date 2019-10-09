@@ -16,7 +16,7 @@ struct ContentView: View {
                     
                 }, label: {
                     Text("Continue")
-                        .modifier(CustomModifier())
+                        .modifier(CustomModifier(paddingHorizontal:8.0))
                 })
                 
                 Button(action: {
@@ -30,7 +30,7 @@ struct ContentView: View {
                     
                 }, label: {
                     Text("Cancel")
-                        .modifier(CustomModifier(backgroundColor: .red))
+                        .modifier(CustomModifier(paddingVertical: 5.0, backgroundColor: .red))
                 })
             }
         }
@@ -38,6 +38,8 @@ struct ContentView: View {
 }
 
 struct CustomModifier: ViewModifier {
+    @State var paddingHorizontal: CGFloat = 14.0
+    @State var paddingVertical: CGFloat = 10.0
     @State var fontSize: CGFloat = 16.0
     @State var backgroundColor = Color.blue
     
@@ -45,8 +47,8 @@ struct CustomModifier: ViewModifier {
         return content
             .foregroundColor(.white)
             .font(.system(size: fontSize))
-            .padding(.horizontal, 14)
-            .padding(.vertical, 10)
+            .padding(.horizontal, paddingHorizontal)
+            .padding(.vertical, paddingVertical)
             .background(backgroundColor)
             .overlay(
                 RoundedRectangle(cornerRadius: 3)
